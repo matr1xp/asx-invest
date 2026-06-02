@@ -15,13 +15,15 @@ describe('Portfolio', () => {
     expect(screen.getByText(/no holdings/i)).toBeInTheDocument();
   });
 
-  it('adds a holding and shows its live value', async () => {
+  it('adds a holding by amount invested and shows invested + live value', async () => {
     const user = userEvent.setup();
     render(<Portfolio />);
+    // $500 invested at an ASX buy price of $50 → 10 units; live price $70 → value $700.
     await user.selectOptions(screen.getByLabelText(/symbol/i), 'VHY');
-    await user.type(screen.getByLabelText(/units/i), '100');
-    await user.type(screen.getByLabelText(/buy price/i), '65');
+    await user.type(screen.getByLabelText(/amount/i), '500');
+    await user.type(screen.getByLabelText(/buy price/i), '50');
     await user.click(screen.getByRole('button', { name: /add/i }));
-    expect(screen.getByText('$7,000.00')).toBeInTheDocument();
+    expect(screen.getByText('$500.00')).toBeInTheDocument(); // invested / cost
+    expect(screen.getByText('$700.00')).toBeInTheDocument(); // live value
   });
 });

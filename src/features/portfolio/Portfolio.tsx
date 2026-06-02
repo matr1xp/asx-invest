@@ -18,12 +18,17 @@ export function Portfolio() {
     <div>
       <h1>Portfolio</h1>
       <HoldingForm onAdd={add} />
+      <p style={{ color: 'var(--text-muted)', fontSize: '.78rem', marginBottom: '1rem' }}>
+        Enter the dollars you invested and the ASX price per unit when you bought
+        (not your micro-platform's unit price). Value &amp; gain track the live ASX price.
+      </p>
       {holdings.length === 0 ? (
         <p style={{ color: 'var(--text-muted)' }}>No holdings yet — add one above to track its live value.</p>
       ) : (
+        <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead><tr style={{ textAlign: 'left', color: 'var(--text-muted)', fontSize: '.78rem' }}>
-            <th>Symbol</th><th>Units</th><th>Buy</th><th>Price</th><th>Value</th><th>Gain</th><th>Income/yr</th><th></th>
+            <th>Symbol</th><th>Invested</th><th>Units</th><th>Buy</th><th>Price</th><th>Value</th><th>Gain</th><th>Income/yr</th><th></th>
           </tr></thead>
           <tbody>
             {holdings.map((h, idx) => {
@@ -32,7 +37,10 @@ export function Portfolio() {
               const m = holdingMetrics(h, price, inst?.cashYield);
               return (
                 <tr key={idx} style={{ borderTop: '1px solid var(--border)', fontFamily: 'var(--mono)' }}>
-                  <td>{h.symbol}</td><td>{h.units}</td><td>{fmtCurrency(h.buyPrice)}</td>
+                  <td>{h.symbol}</td>
+                  <td>{fmtCurrency(m.cost)}</td>
+                  <td style={{ color: 'var(--text-muted)' }}>{m.units.toLocaleString('en-AU', { maximumFractionDigits: 4 })}</td>
+                  <td>{fmtCurrency(h.buyPrice)}</td>
                   <td>{fmtCurrency(price)}</td><td>{fmtCurrency(m.value)}</td>
                   <td style={{ color: (m.gain ?? 0) >= 0 ? 'var(--green)' : 'var(--red)' }}>
                     {fmtCurrency(m.gain)} ({fmtSignedPct(m.gainPct)})
@@ -44,6 +52,7 @@ export function Portfolio() {
             })}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );
