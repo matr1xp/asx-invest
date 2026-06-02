@@ -7,6 +7,7 @@ export const INSTRUMENTS: Instrument[] = [
   { symbol: 'MVW', name: 'VanEck Aust. Equal Weight', category: 'high-yield-etf', cashYield: 4.2, grossYield: 6.0, mer: 0.35, franking: 'Fully', focus: 'Equal-weight ASX 100' },
   { symbol: 'DGRO', name: 'iShares Aust. Div. Growers', category: 'high-yield-etf', cashYield: 3.8, grossYield: 5.4, mer: 0.30, franking: 'Fully', focus: 'Growing dividend history' },
   { symbol: 'SYI', name: 'SPDR S&P/ASX Dividends', category: 'high-yield-etf', cashYield: 5.5, grossYield: 7.5, mer: 0.35, franking: 'Fully', focus: 'Top 50 ASX dividend payers' },
+  { symbol: 'VAP', name: 'Vanguard Aust. Property Sec.', category: 'high-yield-etf', cashYield: 4.5, mer: 0.23, franking: 'Unfranked', focus: 'Diversified A-REIT exposure' },
   // Growth & diversified ETFs (user additions; not in guide)
   { symbol: 'VAS', name: 'Vanguard Australian Shares', category: 'growth-etf', mer: 0.07, franking: 'Fully', focus: 'Broad ASX 300' },
   { symbol: 'VGS', name: 'Vanguard MSCI Intl Shares', category: 'growth-etf', mer: 0.18, franking: 'Unfranked', focus: 'Global developed markets' },

@@ -2,10 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { INSTRUMENTS } from './instruments';
 
 describe('INSTRUMENTS', () => {
-  it('has 29 unique symbols', () => {
+  it('has 30 unique symbols', () => {
     const symbols = INSTRUMENTS.map((i) => i.symbol);
-    expect(symbols).toHaveLength(29);
-    expect(new Set(symbols).size).toBe(29);
+    expect(symbols).toHaveLength(30);
+    expect(new Set(symbols).size).toBe(30);
   });
 
   it('includes the user-added growth ETFs', () => {

@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/types.ts","./src/data/instruments.test.ts","./src/data/instruments.ts","./src/test/setup.ts","./server/cache.test.ts","./server/cache.ts","./server/middleware.test.ts","./server/middleware.ts","./server/plugin.ts","./server/yahoo.test.ts","./server/yahoo.ts"],"version":"5.9.3"}

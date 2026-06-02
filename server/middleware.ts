@@ -1,4 +1,5 @@
 import type { Connect } from 'vite';
+import type { IncomingMessage } from 'node:http';
 import { TtlCache } from './cache';
 import { fetchChart, normaliseQuote, normaliseHistory, type Quote, type Candle } from './yahoo';
 
@@ -29,7 +30,7 @@ function sendJson(res: Parameters<Connect.NextHandleFunction>[1], status: number
   res.end(JSON.stringify(body));
 }
 
-export const apiMiddleware: Connect.NextHandleFunction = (req, res, next) => {
+export const apiMiddleware: Connect.NextHandleFunction = (req: IncomingMessage, res, next) => {
   const url = new URL(req.url ?? '', 'http://localhost');
   if (!url.pathname.startsWith('/api/')) return next();
 
