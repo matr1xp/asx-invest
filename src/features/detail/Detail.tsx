@@ -11,6 +11,8 @@ const RANGES: { label: string; range: string; interval: string }[] = [
   { label: '1M', range: '1mo', interval: '1d' },
   { label: '6M', range: '6mo', interval: '1d' },
   { label: '1Y', range: '1y', interval: '1wk' },
+  { label: '5Y', range: '5y', interval: '1wk' },
+  { label: 'All', range: 'max', interval: '1mo' },
 ];
 
 export function Detail() {
