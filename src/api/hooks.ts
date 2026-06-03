@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchQuotes, fetchHistory } from './client';
+import { fetchQuotes, fetchHistory, fetchPriceOn } from './client';
 import type { Quote } from '../types';
 
 export function useQuotes(symbols: string[]) {
@@ -15,5 +15,14 @@ export function useHistory(symbol: string, range: string, interval: string) {
     queryKey: ['history', symbol, range, interval],
     queryFn: () => fetchHistory(symbol, range, interval),
     staleTime: 15 * 60 * 1000,
+  });
+}
+
+export function usePriceOnDate(symbol: string, date: string) {
+  return useQuery({
+    queryKey: ['price-on', symbol, date],
+    queryFn: () => fetchPriceOn(symbol, date),
+    enabled: Boolean(symbol && date),
+    staleTime: 60 * 60 * 1000,
   });
 }

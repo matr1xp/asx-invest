@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as yahoo from './yahoo';
-import { handleQuotes, handleHistory } from './middleware';
+import { handleQuotes, handleHistory, handlePriceOnDate } from './middleware';
 
 const fakeJson = { _fake: true };
 
@@ -34,5 +34,11 @@ describe('middleware handlers', () => {
     const out = await handleHistory('VHY', '1mo', '1d');
     expect(out.symbol).toBe('VHY');
     expect(out.candles).toHaveLength(1);
+  });
+
+  it('handlePriceOnDate returns the close for a symbol/date', async () => {
+    vi.spyOn(yahoo, 'fetchPriceOnDate').mockResolvedValue(81.23);
+    const out = await handlePriceOnDate('VHY', '2024-01-15');
+    expect(out).toEqual({ symbol: 'VHY', date: '2024-01-15', price: 81.23 });
   });
 });

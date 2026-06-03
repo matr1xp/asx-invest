@@ -55,3 +55,35 @@ export async function fetchChart(symbol: string, range: string, interval: string
   if (!res.ok) throw new Error(`yahoo ${res.status} for ${symbol}`);
   return res.json();
 }
+
+const DAY = 86400;
+
+// Absolute window [date - lookback, date + 1 day] in unix seconds. The lookback
+// (default 15 days) guarantees a trading day is captured even across weekends
+// and holiday closures; the +1 day ensures the target date's own session counts.
+export function periodRange(dateStr: string, lookbackDays = 15): { period1: number; period2: number } {
+  const period2 = Math.floor(Date.parse(`${dateStr}T23:59:59Z`) / 1000) + 1;
+  const period1 = period2 - (lookbackDays + 1) * DAY;
+  return { period1, period2 };
+}
+
+export function priceHistoryUrl(symbol: string, period1: number, period2: number): string {
+  return `${BASE}/${symbol}.AX?period1=${period1}&period2=${period2}&interval=1d`;
+}
+
+// The last candle in a window capped at the target date is the close on that
+// date, or the most recent trading day before it. Null if the window is empty.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function pickLastClose(json: any): number | null {
+  const candles = normaliseHistory(json);
+  return candles.length ? candles[candles.length - 1].c : null;
+}
+
+export async function fetchPriceOnDate(symbol: string, dateStr: string): Promise<number | null> {
+  const { period1, period2 } = periodRange(dateStr);
+  const res = await fetch(priceHistoryUrl(symbol, period1, period2), {
+    headers: { 'User-Agent': 'Mozilla/5.0' },
+  });
+  if (!res.ok) throw new Error(`yahoo ${res.status} for ${symbol}`);
+  return pickLastClose(await res.json());
+}

@@ -5,6 +5,8 @@ import { Portfolio } from './Portfolio';
 
 vi.mock('../../api/hooks', () => ({
   useQuotes: () => ({ data: { VHY: { symbol: 'VHY', price: 70, prevClose: 69, change: 1, changePct: 1.4, volume: 1, currency: 'AUD', spark: [69, 70] } } }),
+  // No auto-fill in tests, so the manually typed buy price stands.
+  usePriceOnDate: () => ({ data: undefined, isFetching: false }),
 }));
 
 describe('Portfolio', () => {

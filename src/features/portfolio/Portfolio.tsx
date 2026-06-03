@@ -19,8 +19,8 @@ export function Portfolio() {
       <h1>Portfolio</h1>
       <HoldingForm onAdd={add} />
       <p style={{ color: 'var(--text-muted)', fontSize: '.78rem', marginBottom: '1rem' }}>
-        Enter the dollars you invested and the ASX price per unit when you bought
-        (not your micro-platform's unit price). Value &amp; gain track the live ASX price.
+        Enter the dollars you invested and the date you bought — the ASX buy price
+        auto-fills from that date's close (editable). Value &amp; gain track the live ASX price.
       </p>
       {holdings.length === 0 ? (
         <p style={{ color: 'var(--text-muted)' }}>No holdings yet — add one above to track its live value.</p>
@@ -28,7 +28,7 @@ export function Portfolio() {
         <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead><tr style={{ textAlign: 'left', color: 'var(--text-muted)', fontSize: '.78rem' }}>
-            <th>Symbol</th><th>Invested</th><th>Units</th><th>Buy</th><th>Price</th><th>Value</th><th>Gain</th><th>Income/yr</th><th></th>
+            <th>Symbol</th><th>Bought</th><th>Invested</th><th>Units</th><th>Buy</th><th>Price</th><th>Value</th><th>Gain</th><th>Income/yr</th><th></th>
           </tr></thead>
           <tbody>
             {holdings.map((h, idx) => {
@@ -38,6 +38,7 @@ export function Portfolio() {
               return (
                 <tr key={idx} style={{ borderTop: '1px solid var(--border)', fontFamily: 'var(--mono)' }}>
                   <td>{h.symbol}</td>
+                  <td style={{ color: 'var(--text-muted)' }}>{h.date ?? '—'}</td>
                   <td>{fmtCurrency(m.cost)}</td>
                   <td style={{ color: 'var(--text-muted)' }}>{m.units.toLocaleString('en-AU', { maximumFractionDigits: 4 })}</td>
                   <td>{fmtCurrency(h.buyPrice)}</td>

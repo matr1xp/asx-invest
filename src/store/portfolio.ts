@@ -2,7 +2,7 @@
 // unit at purchase. Units are derived (amountInvested / buyPrice), which suits
 // fractional/micro investing (e.g. Pearler Micro) where you think in dollars
 // invested rather than whole share units.
-export interface Holding { symbol: string; amountInvested: number; buyPrice: number; }
+export interface Holding { symbol: string; amountInvested: number; buyPrice: number; date?: string; }
 export interface HoldingMetrics {
   cost: number;          // = amountInvested
   units: number;         // derived: amountInvested / buyPrice
