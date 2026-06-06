@@ -9,6 +9,7 @@ export interface Instrument {
   mer?: number;
   franking?: 'Fully' | 'Partial' | 'Unfranked';
   focus?: string;
+  description?: string;
 }
 
 export interface Quote {

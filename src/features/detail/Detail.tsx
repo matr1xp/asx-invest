@@ -27,6 +27,11 @@ export function Detail() {
     <div>
       <Link to="/" style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>← Dashboard</Link>
       <h1 style={{ margin: '.5rem 0' }}>{instrument.symbol} · {instrument.name}</h1>
+      {instrument.description && (
+        <p style={{ color: 'var(--text-muted)', fontSize: '.88rem', lineHeight: 1.55, margin: '.35rem 0 .75rem' }}>
+          {instrument.description}
+        </p>
+      )}
       <div className="range-btn-row">
         {RANGES.map((opt) => (
           <button key={opt.label} onClick={() => setR(opt)}
