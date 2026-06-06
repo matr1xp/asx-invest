@@ -4,7 +4,7 @@ import { fetchChart, fetchPriceOnDate, normaliseQuote, normaliseHistory, type Qu
 
 export const SYMBOL_RE = /^[A-Z0-9]{1,10}$/;
 export const VALID_RANGES = new Set(['1d','5d','1mo','3mo','6mo','1y','2y','5y','10y','ytd','max']);
-export const VALID_INTERVALS = new Set(['1m','5m','15m','1d','1wk','1mo']);
+export const VALID_INTERVALS = new Set(['1m','5m','15m','30m','1d','1wk','1mo']);
 export const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 const quoteCache = new TtlCache<Quote>(60_000);
