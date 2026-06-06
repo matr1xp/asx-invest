@@ -27,12 +27,14 @@ export function Detail() {
     <div>
       <Link to="/" style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>← Dashboard</Link>
       <h1 style={{ margin: '.5rem 0' }}>{instrument.symbol} · {instrument.name}</h1>
-      <div style={{ display: 'flex', gap: '.4rem', margin: '.75rem 0' }}>
+      <div className="range-btn-row">
         {RANGES.map((opt) => (
           <button key={opt.label} onClick={() => setR(opt)}
-            style={{ padding: '.3rem .7rem', borderRadius: 8, cursor: 'pointer',
-              border: '1px solid var(--border)', background: opt.label === r.label ? 'var(--gold)' : 'transparent',
-              color: opt.label === r.label ? 'var(--navy)' : 'var(--text)' }}>{opt.label}</button>
+            className="range-btn"
+            style={{
+              background: opt.label === r.label ? 'var(--gold)' : 'transparent',
+              color: opt.label === r.label ? 'var(--navy)' : 'var(--text)',
+            }}>{opt.label}</button>
         ))}
       </div>
       {isLoading && <div style={{ color: 'var(--text-muted)' }}>Loading chart…</div>}

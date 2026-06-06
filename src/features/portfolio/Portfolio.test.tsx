@@ -25,7 +25,9 @@ describe('Portfolio', () => {
     await user.type(screen.getByLabelText(/amount/i), '500');
     await user.type(screen.getByLabelText(/buy price/i), '50');
     await user.click(screen.getByRole('button', { name: /add/i }));
-    expect(screen.getByText('$500.00')).toBeInTheDocument(); // invested / cost
-    expect(screen.getByText('$700.00')).toBeInTheDocument(); // live value
+    // Both the desktop table cell and the mobile card render the same value,
+    // so we expect two elements for each figure.
+    expect(screen.getAllByText('$500.00').length).toBeGreaterThanOrEqual(1); // invested / cost
+    expect(screen.getAllByText('$700.00').length).toBeGreaterThanOrEqual(1); // live value
   });
 });

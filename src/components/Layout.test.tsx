@@ -10,9 +10,10 @@ describe('Layout', () => {
         <Layout><div>child content</div></Layout>
       </MemoryRouter>,
     );
-    expect(screen.getByText('Dashboard')).toBeInTheDocument();
-    expect(screen.getByText('Portfolio')).toBeInTheDocument();
-    expect(screen.getByText('Yields')).toBeInTheDocument();
+    // Each nav label appears in both the desktop top nav and the mobile bottom tab bar.
+    expect(screen.getAllByText('Dashboard').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Portfolio').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Yields').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('child content')).toBeInTheDocument();
   });
 });

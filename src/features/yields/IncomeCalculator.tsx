@@ -16,7 +16,7 @@ export function IncomeCalculator() {
   return (
     <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 12, padding: '1.25rem', marginTop: '1.5rem' }}>
       <h2 style={{ marginBottom: '1rem' }}>Income Calculator</h2>
-      <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
+      <div className="income-calc-form">
         <label>Amount (A$)<input aria-label="amount" type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} /></label>
         <label>Cash yield %<input aria-label="yield" type="number" value={yieldPct} onChange={(e) => setYieldPct(+e.target.value)} /></label>
         <label>Franking

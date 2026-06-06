@@ -28,7 +28,7 @@ export function HoldingForm({ onAdd }: { onAdd: (h: Holding) => void }) {
   }
 
   return (
-    <form onSubmit={submit} style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: '.5rem' }}>
+    <form onSubmit={submit} className="holding-form">
       <label>Symbol
         <select aria-label="symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)}>
           {INSTRUMENTS.map((i) => <option key={i.symbol} value={i.symbol}>{i.symbol}</option>)}
@@ -47,7 +47,7 @@ export function HoldingForm({ onAdd }: { onAdd: (h: Holding) => void }) {
           placeholder={isFetching ? 'fetching…' : '178.51'}
           value={buyPrice} onChange={(e) => setBuyPrice(e.target.value)} />
       </label>
-      <button type="submit">Add</button>
+      <button type="submit" className="holding-form-submit">Add</button>
     </form>
   );
 }

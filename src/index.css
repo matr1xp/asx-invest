@@ -3,7 +3,235 @@
   --red: #FF5A5F; --green: #27AE60; --bg: #0A1628; --card: #112240;
   --border: #1A3355; --text: #F7F8FA; --text-muted: #9CA3AF;
   --font: 'Inter', sans-serif; --mono: 'JetBrains Mono', monospace;
+  --tab-bar-height: 56px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font); background: var(--bg); color: var(--text); }
 a { color: inherit; text-decoration: none; }
+
+/* ── Top nav ─────────────────────────────────────────────── */
+.nav-top {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  height: 64px;
+  padding: 0 1.5rem;
+  background: var(--navy-mid);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-top-links { display: flex; gap: .5rem; }
+.nav-disclaimer { margin-left: auto; font-size: .72rem; color: var(--text-muted); }
+
+/* ── Bottom tab bar (mobile only) ────────────────────────── */
+.nav-bottom {
+  display: none;
+}
+
+/* ── Main content ────────────────────────────────────────── */
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* ── HoldingForm ─────────────────────────────────────────── */
+.holding-form {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: .5rem;
+}
+.holding-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.holding-form input,
+.holding-form select {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: .9rem;
+  padding: .4rem .6rem;
+  min-height: 44px;
+}
+.holding-form-submit {
+  min-height: 44px;
+  padding: .4rem 1.2rem;
+}
+
+/* ── Portfolio table ─────────────────────────────────────── */
+.portfolio-table-wrap { overflow-x: auto; }
+.portfolio-cards { display: none; }
+
+/* ── Portfolio card (mobile) ─────────────────────────────── */
+.holding-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  margin-bottom: .75rem;
+}
+.holding-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .6rem;
+}
+.holding-card-symbol { font-weight: 700; font-size: 1rem; }
+.holding-card-date { font-size: .75rem; color: var(--text-muted); }
+.holding-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem .75rem;
+  margin-bottom: .65rem;
+}
+.holding-card-stat-label {
+  font-size: .68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.holding-card-stat-value {
+  font-family: var(--mono);
+  font-size: .92rem;
+  font-weight: 700;
+  margin-top: .1rem;
+}
+.holding-card-delete {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--red);
+  cursor: pointer;
+  font-size: .85rem;
+}
+
+/* ── Income Calculator form ──────────────────────────────── */
+.income-calc-form {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.income-calc-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.income-calc-form input,
+.income-calc-form select {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: .9rem;
+  padding: .4rem .6rem;
+  min-height: 44px;
+}
+
+/* ── Yields table: Name column ───────────────────────────── */
+.yields-col-name { /* visible by default */ }
+
+/* ── Detail range buttons ────────────────────────────────── */
+.range-btn-row {
+  display: flex;
+  gap: .4rem;
+  margin: .75rem 0;
+  flex-wrap: wrap;
+}
+.range-btn {
+  padding: .3rem .7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE  ≤ 640px
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* Main padding */
+  .main-content {
+    padding: 1rem;
+    padding-bottom: calc(1rem + var(--tab-bar-height));
+  }
+
+  /* Hide desktop nav links; show only logo row */
+  .nav-top-links { display: none; }
+  .nav-disclaimer { display: none; }
+
+  /* Bottom tab bar */
+  .nav-bottom {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--tab-bar-height);
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    z-index: 20;
+  }
+  .nav-bottom a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .2rem;
+    font-size: .68rem;
+    font-weight: 600;
+    color: rgba(255,255,255,.55);
+    min-height: 44px;
+    transition: color .15s;
+  }
+  .nav-bottom a.active {
+    color: var(--gold);
+  }
+  .nav-bottom a svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Portfolio: swap table for cards */
+  .portfolio-table-wrap { display: none; }
+  .portfolio-cards { display: block; }
+
+  /* HoldingForm: stack fields full-width */
+  .holding-form { flex-direction: column; align-items: stretch; }
+  .holding-form label { width: 100%; }
+  .holding-form input,
+  .holding-form select { width: 100%; }
+  .holding-form-submit { width: 100%; }
+
+  /* Income Calculator: stack fields full-width */
+  .income-calc-form { flex-direction: column; }
+  .income-calc-form label { width: 100%; }
+  .income-calc-form input,
+  .income-calc-form select { width: 100%; }
+
+  /* Yields: hide Name column */
+  .yields-col-name { display: none; }
+
+  /* Range buttons: smaller padding so they all fit */
+  .range-btn {
+    padding: .3rem .45rem;
+    font-size: .82rem;
+    min-width: 36px;
+  }
+}

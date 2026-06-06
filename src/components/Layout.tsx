@@ -10,17 +10,40 @@ const linkStyle = ({ isActive }: { isActive: boolean }) => ({
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
-      <nav style={{ display: 'flex', gap: '.5rem', alignItems: 'center', height: 64,
-        padding: '0 1.5rem', background: 'var(--navy-mid)', position: 'sticky', top: 0, zIndex: 10 }}>
+      <nav className="nav-top">
         <span style={{ fontWeight: 800, marginRight: '1rem' }}>🇦🇺 ASX Tracker</span>
-        <NavLink to="/" style={linkStyle} end>Dashboard</NavLink>
-        <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
-        <NavLink to="/yields" style={linkStyle}>Yields</NavLink>
-        <span style={{ marginLeft: 'auto', fontSize: '.72rem', color: 'var(--text-muted)' }}>
-          Prices ~15-min delayed
-        </span>
+        <div className="nav-top-links">
+          <NavLink to="/" style={linkStyle} end>Dashboard</NavLink>
+          <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
+          <NavLink to="/yields" style={linkStyle}>Yields</NavLink>
+        </div>
+        <span className="nav-disclaimer">Prices ~15-min delayed</span>
       </nav>
-      <main style={{ maxWidth: 1100, margin: '0 auto', padding: '1.5rem' }}>{children}</main>
+
+      {/* Bottom tab bar — visible on mobile only (CSS toggles display) */}
+      <nav className="nav-bottom" aria-label="Main navigation">
+        <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </NavLink>
+        <NavLink to="/portfolio" className={({ isActive }) => isActive ? 'active' : ''}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          </svg>
+          Portfolio
+        </NavLink>
+        <NavLink to="/yields" className={({ isActive }) => isActive ? 'active' : ''}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          Yields
+        </NavLink>
+      </nav>
+
+      <main className="main-content">{children}</main>
     </div>
   );
 }
