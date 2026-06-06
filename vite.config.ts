@@ -4,5 +4,5 @@ import { apiProxyPlugin } from './server/plugin';
 
 export default defineConfig({
   plugins: [react(), apiProxyPlugin()],
-  server: { port: 5173, host: '0.0.0.0', allowedHosts: ['asx.ml1.app'] },
+  server: { port: 5173, host: '0.0.0.0', allowedHosts: ['asx.ml1.app'], hmr: false },
 });
