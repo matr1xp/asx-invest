@@ -49,6 +49,11 @@ export const INSTRUMENTS: Instrument[] = [
     description: 'A multi-asset fund investing in a mix of Vanguard\'s underlying index funds, targeting roughly 90% growth assets (global and Australian shares) and 10% defensive assets (bonds), designed for investors seeking long-term capital growth.',
   },
   {
+    symbol: 'DHHF', name: 'BetaShares Diversified All Growth', category: 'growth-etf',
+    mer: 0.19, focus: 'Multi-asset 100% growth',
+    description: 'A diversified all-in-one ETF investing across a portfolio of BetaShares index funds covering Australian shares, international developed markets, and emerging markets, with 100% allocation to growth assets and no defensive component.',
+  },
+  {
     symbol: 'ACDC', name: 'Global X Battery Tech & Lithium', category: 'growth-etf',
     mer: 0.69, focus: 'Battery / lithium thematic',
     description: 'Provides exposure to global companies involved in battery technology and lithium, spanning the full supply chain from lithium mining and refining through to battery cell production, supporting the electrification and energy transition megatrend.',
