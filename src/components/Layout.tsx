@@ -14,6 +14,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <span style={{ fontWeight: 800, marginRight: '1rem' }}>🇦🇺 ASX Tracker</span>
         <div className="nav-top-links">
           <NavLink to="/" style={linkStyle} end>Dashboard</NavLink>
+          <NavLink to="/favorites" style={linkStyle}>Favorites</NavLink>
           <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
           <NavLink to="/yields" style={linkStyle}>Yields</NavLink>
         </div>
@@ -28,6 +29,12 @@ export function Layout({ children }: { children: ReactNode }) {
             <rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
           </svg>
           Dashboard
+        </NavLink>
+        <NavLink to="/favorites" className={({ isActive }) => isActive ? 'active' : ''}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          Favorites
         </NavLink>
         <NavLink to="/portfolio" className={({ isActive }) => isActive ? 'active' : ''}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

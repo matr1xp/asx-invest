@@ -6,7 +6,12 @@ import { InstrumentCard } from './InstrumentCard';
 
 const CATEGORIES = Object.keys(CATEGORY_LABELS) as Category[];
 
-export function Dashboard() {
+interface DashboardProps {
+  favorites: string[];
+  onToggleFavorite: (symbol: string) => void;
+}
+
+export function Dashboard({ favorites, onToggleFavorite }: DashboardProps) {
   const symbols = useMemo(() => INSTRUMENTS.map((i) => i.symbol), []);
   const { data: quotes, isFetching, dataUpdatedAt } = useQuotes(symbols);
   const [filter, setFilter] = useState<Category | 'all'>('all');
@@ -31,7 +36,15 @@ export function Dashboard() {
           <section key={c} style={{ marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '.95rem', margin: '.5rem 0' }}>{CATEGORY_LABELS[c]}</h2>
             <div style={{ display: 'grid', gap: '.85rem', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
-              {items.map((i) => <InstrumentCard key={i.symbol} instrument={i} quote={quotes?.[i.symbol]} />)}
+              {items.map((i) => (
+                <InstrumentCard
+                  key={i.symbol}
+                  instrument={i}
+                  quote={quotes?.[i.symbol]}
+                  isFavorite={favorites.includes(i.symbol)}
+                  onToggleFavorite={onToggleFavorite}
+                />
+              ))}
             </div>
           </section>
         );

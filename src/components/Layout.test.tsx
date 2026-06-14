@@ -12,6 +12,7 @@ describe('Layout', () => {
     );
     // Each nav label appears in both the desktop top nav and the mobile bottom tab bar.
     expect(screen.getAllByText('Dashboard').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Favorites').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Portfolio').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Yields').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('child content')).toBeInTheDocument();

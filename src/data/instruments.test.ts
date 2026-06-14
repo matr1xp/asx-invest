@@ -4,13 +4,13 @@ import { INSTRUMENTS } from './instruments';
 describe('INSTRUMENTS', () => {
   it('has 30 unique symbols', () => {
     const symbols = INSTRUMENTS.map((i) => i.symbol);
-    expect(symbols).toHaveLength(30);
-    expect(new Set(symbols).size).toBe(30);
+    expect(symbols).toHaveLength(31);
+    expect(new Set(symbols).size).toBe(31);
   });
 
   it('includes the user-added growth ETFs', () => {
     const growth = INSTRUMENTS.filter((i) => i.category === 'growth-etf').map((i) => i.symbol);
-    expect(growth.sort()).toEqual(['ACDC', 'ESGI', 'VAS', 'VDHG', 'VGS']);
+    expect(growth.sort()).toEqual(['ACDC', 'DHHF', 'ESGI', 'VAS', 'VDHG', 'VGS']);
   });
 
   it('every instrument has a name and category', () => {
